@@ -11,7 +11,7 @@ for "Hello World!" => '2NEpo7TZRRrLZSi2U',
     blob8.new('0000287fb4cd'.comb(/../).map({:16($_)})) => '11233QC4' {
    
   is Base58::encode(.key), .value;
-  is Base58::decode(.value), .key;
+  is Base58::decode(.value), .key ~~ Str ?? .key.encode !! .key;
 }
 
 dies-ok { Base58::decode "foo bar" };
