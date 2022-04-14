@@ -12,7 +12,6 @@ our subset Base58Str of Str is export where /^<@alphabet>*$/;
 our proto encode($ --> Base58Str) {*}
 multi encode(Str $s) { samewith($s.encode) }
 multi encode(blob8 $b) {
-  return 
     ($b.map(+(* == 0)).join.match(/^1*/)) ~
     $b
     .Array
@@ -24,10 +23,9 @@ multi encode(blob8 $b) {
 }
 
 our sub decode(Base58Str $s where /^<@alphabet>*$/ --> blob8) {
-  my %b58 = @alphabet Z=> ^58;
-  return blob8.new:
+  blob8.new:
     0 xx $s.match(/^1*/).chars,
-    |$s.comb.map({%b58{$_}})
+    |$s.comb.map({(% = @alphabet Z=> ^58){$_}})
     .reduce(58 * * + *)
     .polymod(256 xx *)
     .reverse
