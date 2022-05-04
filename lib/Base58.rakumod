@@ -22,7 +22,7 @@ multi encode(blob8 $b) {
     .join;
 }
 
-our sub decode(Base58Str $s where /^<@alphabet>*$/ --> blob8) {
+our sub decode(Base58Str $s --> blob8) {
   blob8.new:
     0 xx $s.match(/^1*/).chars,
     |$s.comb.map({(% = @alphabet Z=> ^58){$_}})
