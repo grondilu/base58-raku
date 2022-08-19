@@ -4,7 +4,7 @@
     "version" : "0.0.3",
     "description" : "Satoshi Nakamoto's binary-to-text encoding",
     "authors" : [ "Lucien Grondin" ],
-    "license" : "MIT-License",
+    "license" : "MIT",
     "provides" : {
         "Base58" : "lib/Base58.rakumod"
     },
