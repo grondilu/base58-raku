@@ -9,6 +9,14 @@ our constant @alphabet = <
 
 our subset Base58Str of Str is export where /^<@alphabet>*$/;
 
+our proto check($) {*}
+multi check(Base58Str $str) { samewith decode($str) }
+multi check(blob8 $b) {
+  use Digest::SHA;
+  $b ~~ encode $_ ~ sha256(sha256 $_).subbuf(0, 4)
+    given $b.subbuf: 0, *-3
+}
+
 our proto encode($ --> Base58Str) {*}
 multi encode(Str $s) { samewith($s.encode) }
 multi encode(blob8 $b) {
