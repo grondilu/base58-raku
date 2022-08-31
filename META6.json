@@ -1,7 +1,7 @@
 {
     "perl" : "6.d",
     "name" : "Base58",
-    "version" : "0.0.4",
+    "version" : "0.0.5",
     "description" : "Satoshi Nakamoto's binary-to-text encoding",
     "authors" : [ "Lucien Grondin" ],
     "license" : "MIT",

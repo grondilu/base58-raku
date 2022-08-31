@@ -2,8 +2,6 @@
 use Test;
 use Base58;
 
-plan 8;
-
 # test vectors from https://www.ietf.org/archive/id/draft-msporny-base58-03.txt
 #
 for "Hello World!" => '2NEpo7TZRRrLZSi2U',
@@ -17,4 +15,15 @@ for "Hello World!" => '2NEpo7TZRRrLZSi2U',
 dies-ok { Base58::decode "foo bar" };
 dies-ok { Base58::decode "1l" };
 
+subtest "testing random blobs", {
+
+  for ^10 {
+    my $b = blob8.new: ^256 .roll(32);
+    my $s = Base58::encode $b;
+    is $b, Base58::decode($s), $s;
+  }
+
+}
+
+done-testing;
 # vi: ft=raku
