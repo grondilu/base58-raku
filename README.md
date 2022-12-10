@@ -1,6 +1,6 @@
 # Base58
 
-Satoshi Nakamo's binary-to-text encoding in Raku.  No checksum.
+Satoshi Nakamoto's binary-to-text encoding in Raku.  No checksum.
 
 ## Synopis
 
